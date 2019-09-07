@@ -1,0 +1,23 @@
+{
+	"name": "DestinationDataset_8gp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "09062019fbblob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "date.txt",
+				"container": "09062019fbstrgcntr"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
