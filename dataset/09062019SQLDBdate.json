@@ -1,5 +1,5 @@
 {
-	"name": "09062019SQLDB",
+	"name": "09062019SQLDBdate",
 	"properties": {
 		"description": "Connect to your data destination store.",
 		"linkedServiceName": {
