@@ -1,0 +1,61 @@
+{
+	"name": "09062019SQLDBPeople",
+	"properties": {
+		"description": "Connect to your data destination store.",
+		"linkedServiceName": {
+			"referenceName": "09062019fbsql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "PeopleID",
+				"type": "Int32"
+			},
+			{
+				"name": "PersonID",
+				"type": "String"
+			},
+			{
+				"name": "LastCommaFirstName",
+				"type": "String"
+			},
+			{
+				"name": "FirstName",
+				"type": "String"
+			},
+			{
+				"name": "LastName",
+				"type": "String"
+			},
+			{
+				"name": "PersonStatus",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryTeam",
+				"type": "String"
+			},
+			{
+				"name": "Email",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "PersonImage",
+				"type": "Byte[]"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[People]"
+		}
+	}
+}
