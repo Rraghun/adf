@@ -395,8 +395,76 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "sendsuccessemail",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "s3blobtoazureblob",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-45.eastus2.logic.azure.com:443/workflows/6761a6bdcc51461589817405551e5081",
+					"method": "POST",
+					"headers": {
+						"content-type": "application/json"
+					},
+					"body": {
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"successtype": "Succeeded",
+						"message": "@{activity('S3blobtoAzure Blob').output.dataWritten}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"recipient": "@{pipeline().parameters.recipient}"
+					}
+				}
+			},
+			{
+				"name": "sendfailureemail",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "s3blobtoazureblob",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-45.eastus2.logic.azure.com:443/workflows/6761a6bdcc51461589817405551e5081",
+					"method": "POST",
+					"headers": {
+						"content-type": "json"
+					},
+					"body": "Body{\"dataFactoryName\":\"@{pipeline().DataFactory}\",\"successtype\":\"Failed\",\"message\":\"@{activity('S3blobtoAzureBlob').error.message}\",\"pipelineName\":\"@{pipeline().Pipeline}\",\"recipient\":\"@{pipeline().parameters.recipient}\"}"
+				}
 			}
 		],
+		"parameters": {
+			"recipient": {
+				"type": "string",
+				"defaultValue": "rraghun@Microsoft.com"
+			}
+		},
 		"annotations": []
 	}
 }
