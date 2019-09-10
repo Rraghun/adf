@@ -10,20 +10,72 @@
 		"type": "AzureSqlTable",
 		"structure": [
 			{
-				"name": "SkillSetsID",
+				"name": "DateID",
 				"type": "Int32"
 			},
 			{
-				"name": "SkillSet",
+				"name": "Date",
+				"type": "DateTime"
+			},
+			{
+				"name": "DayNumber",
+				"type": "Int32"
+			},
+			{
+				"name": "DayOfWeekNumber",
+				"type": "Int32"
+			},
+			{
+				"name": "DayOfWeekName",
 				"type": "String"
 			},
 			{
-				"name": "SkillSetDescription",
+				"name": "WeekName",
+				"type": "String"
+			},
+			{
+				"name": "Week",
+				"type": "DateTime"
+			},
+			{
+				"name": "DayOfYear",
+				"type": "Int32"
+			},
+			{
+				"name": "MonthNumber",
+				"type": "Int32"
+			},
+			{
+				"name": "MonthName",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "Int32"
+			},
+			{
+				"name": "CalendarQuarter",
+				"type": "String"
+			},
+			{
+				"name": "FiscalYear",
+				"type": "String"
+			},
+			{
+				"name": "FiscalMonth",
+				"type": "Int32"
+			},
+			{
+				"name": "FiscalQuarter",
+				"type": "String"
+			},
+			{
+				"name": "FiscalBiMonth",
 				"type": "String"
 			}
 		],
 		"typeProperties": {
-			"tableName": "[dbo].[SkillSets]"
+			"tableName": "[dbo].[Date]"
 		}
 	}
 }
