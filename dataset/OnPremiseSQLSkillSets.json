@@ -1,0 +1,29 @@
+{
+	"name": "OnPremiseSQLSkillSets",
+	"properties": {
+		"description": "Connect to your data source store.",
+		"linkedServiceName": {
+			"referenceName": "onpremisesql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "SkillSetsID",
+				"type": "Int32"
+			},
+			{
+				"name": "SkillSet",
+				"type": "String"
+			},
+			{
+				"name": "SkillSetDescription",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[SkillSets]"
+		}
+	}
+}
