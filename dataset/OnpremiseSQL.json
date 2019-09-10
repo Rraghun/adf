@@ -8,8 +8,54 @@
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "PeopleID",
+				"type": "Int32"
+			},
+			{
+				"name": "PersonID",
+				"type": "String"
+			},
+			{
+				"name": "LastCommaFirstName",
+				"type": "String"
+			},
+			{
+				"name": "FirstName",
+				"type": "String"
+			},
+			{
+				"name": "LastName",
+				"type": "String"
+			},
+			{
+				"name": "PersonStatus",
+				"type": "String"
+			},
+			{
+				"name": "PrimaryTeam",
+				"type": "String"
+			},
+			{
+				"name": "Email",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "State",
+				"type": "String"
+			},
+			{
+				"name": "PersonImage",
+				"type": "Byte[]"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[dbo].[Date]"
+			"tableName": "[dbo].[People]"
 		}
 	}
 }
