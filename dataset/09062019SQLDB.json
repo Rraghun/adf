@@ -10,52 +10,20 @@
 		"type": "AzureSqlTable",
 		"structure": [
 			{
-				"name": "PeopleID",
+				"name": "SkillSetsID",
 				"type": "Int32"
 			},
 			{
-				"name": "PersonID",
+				"name": "SkillSet",
 				"type": "String"
 			},
 			{
-				"name": "LastCommaFirstName",
+				"name": "SkillSetDescription",
 				"type": "String"
-			},
-			{
-				"name": "FirstName",
-				"type": "String"
-			},
-			{
-				"name": "LastName",
-				"type": "String"
-			},
-			{
-				"name": "PersonStatus",
-				"type": "String"
-			},
-			{
-				"name": "PrimaryTeam",
-				"type": "String"
-			},
-			{
-				"name": "Email",
-				"type": "String"
-			},
-			{
-				"name": "City",
-				"type": "String"
-			},
-			{
-				"name": "State",
-				"type": "String"
-			},
-			{
-				"name": "PersonImage",
-				"type": "Byte[]"
 			}
 		],
 		"typeProperties": {
-			"tableName": "[dbo].[People]"
+			"tableName": "[dbo].[SkillSets]"
 		}
 	}
 }
