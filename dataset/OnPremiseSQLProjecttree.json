@@ -1,0 +1,37 @@
+{
+	"name": "OnPremiseSQLProjecttree",
+	"properties": {
+		"description": "Connect to your data source store.",
+		"linkedServiceName": {
+			"referenceName": "onpremisesql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "ProjectTreeID",
+				"type": "Int32"
+			},
+			{
+				"name": "Type",
+				"type": "String"
+			},
+			{
+				"name": "Project",
+				"type": "String"
+			},
+			{
+				"name": "Phase",
+				"type": "String"
+			},
+			{
+				"name": "Task",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[ProjectTree]"
+		}
+	}
+}
