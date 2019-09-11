@@ -1,0 +1,719 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "09062019fbadf"
+		},
+		"integrationRuntime_092019adflab-ssis": {
+			"type": "string",
+			"metadata": "Integration Runtime Name",
+			"defaultValue": "092019adflab-ssis"
+		},
+		"integrationRuntime_selfhostedintegrationruntime": {
+			"type": "string",
+			"metadata": "Integration Runtime Name",
+			"defaultValue": "selfhostedintegrationruntime"
+		},
+		"09062019adls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of '09062019adls'"
+		},
+		"09062019fbblob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of '09062019fbblob'"
+		},
+		"09062019fbsql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of '09062019fbsql'"
+		},
+		"AzureSqlDatabaseadfwatermarkload_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseadfwatermarkload'"
+		},
+		"SqlServerlinkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerlinkedservice'"
+		},
+		"SqlServerlinkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerlinkedservice'"
+		},
+		"onpremisesql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'onpremisesql'"
+		},
+		"onpremisesql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'onpremisesql'"
+		},
+		"sqlserverlinkdsvcadfwatermark_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlserverlinkdsvcadfwatermark'"
+		},
+		"09062019adls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://09062019adls.dfs.core.windows.net"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "09adflabsqlsy3lm.database.windows.net"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "rraghun"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		},
+		"SqlServerlinkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "northamerica\\rraghun"
+		},
+		"onpremisesql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "northamerica\\rraghun"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019adls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('09062019adls_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('09062019adls_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019fbblob')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('09062019fbblob_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019fbsql')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('09062019fbsql_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabaseadfwatermarkload')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabaseadfwatermarkload_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/', parameters('integrationRuntime_092019adflab-ssis'))]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "East US 2",
+						"nodeSize": "Standard_D2_v3",
+						"numberOfNodes": 1,
+						"maxParallelExecutionsPerNode": 1
+					},
+					"ssisProperties": {
+						"catalogInfo": {
+							"catalogServerEndpoint": "[parameters('092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]",
+							"catalogAdminUserName": "[parameters('092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]",
+							"catalogAdminPassword": {
+								"type": "SecureString",
+								"value": "[parameters('092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+							},
+							"catalogPricingTier": "Basic"
+						},
+						"edition": "Enterprise",
+						"licenseType": "BasePrice"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/', parameters('integrationRuntime_selfhostedintegrationruntime'))]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019SQLDBPeople')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connect to your data destination store.",
+				"linkedServiceName": {
+					"referenceName": "09062019fbsql",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"structure": [
+					{
+						"name": "PeopleID",
+						"type": "Int32"
+					},
+					{
+						"name": "PersonID",
+						"type": "String"
+					},
+					{
+						"name": "LastCommaFirstName",
+						"type": "String"
+					},
+					{
+						"name": "FirstName",
+						"type": "String"
+					},
+					{
+						"name": "LastName",
+						"type": "String"
+					},
+					{
+						"name": "PersonStatus",
+						"type": "String"
+					},
+					{
+						"name": "PrimaryTeam",
+						"type": "String"
+					},
+					{
+						"name": "Email",
+						"type": "String"
+					},
+					{
+						"name": "City",
+						"type": "String"
+					},
+					{
+						"name": "State",
+						"type": "String"
+					},
+					{
+						"name": "PersonImage",
+						"type": "Byte[]"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[People]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbsql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019SQLDBdate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connect to your data destination store.",
+				"linkedServiceName": {
+					"referenceName": "09062019fbsql",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"structure": [
+					{
+						"name": "DateID",
+						"type": "Int32"
+					},
+					{
+						"name": "Date",
+						"type": "DateTime"
+					},
+					{
+						"name": "DayNumber",
+						"type": "Int32"
+					},
+					{
+						"name": "DayOfWeekNumber",
+						"type": "Int32"
+					},
+					{
+						"name": "DayOfWeekName",
+						"type": "String"
+					},
+					{
+						"name": "WeekName",
+						"type": "String"
+					},
+					{
+						"name": "Week",
+						"type": "DateTime"
+					},
+					{
+						"name": "DayOfYear",
+						"type": "Int32"
+					},
+					{
+						"name": "MonthNumber",
+						"type": "Int32"
+					},
+					{
+						"name": "MonthName",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "Int32"
+					},
+					{
+						"name": "CalendarQuarter",
+						"type": "String"
+					},
+					{
+						"name": "FiscalYear",
+						"type": "String"
+					},
+					{
+						"name": "FiscalMonth",
+						"type": "Int32"
+					},
+					{
+						"name": "FiscalQuarter",
+						"type": "String"
+					},
+					{
+						"name": "FiscalBiMonth",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[Date]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbsql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019sqldbprojecttree')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connect to your data destination store.",
+				"linkedServiceName": {
+					"referenceName": "09062019fbsql",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"structure": [
+					{
+						"name": "ProjectTreeID",
+						"type": "Int32"
+					},
+					{
+						"name": "Type",
+						"type": "String"
+					},
+					{
+						"name": "Project",
+						"type": "String"
+					},
+					{
+						"name": "Phase",
+						"type": "String"
+					},
+					{
+						"name": "Task",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[ProjectTree]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbsql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019sqldbskillsets')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connect to your data destination store.",
+				"linkedServiceName": {
+					"referenceName": "09062019fbsql",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"structure": [
+					{
+						"name": "SkillSetsID",
+						"type": "Int32"
+					},
+					{
+						"name": "SkillSet",
+						"type": "String"
+					},
+					{
+						"name": "SkillSetDescription",
+						"type": "String"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[SkillSets]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbsql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/09062019sqldbtimeentered')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connect to your data destination store.",
+				"linkedServiceName": {
+					"referenceName": "09062019fbsql",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"structure": [
+					{
+						"name": "TimeEnteredID",
+						"type": "Int32"
+					},
+					{
+						"name": "DateID",
+						"type": "Int32"
+					},
+					{
+						"name": "ProjectTreeID",
+						"type": "Int32"
+					},
+					{
+						"name": "PeopleID",
+						"type": "Int32"
+					},
+					{
+						"name": "SkillSetsID",
+						"type": "Int32"
+					},
+					{
+						"name": "SkillSetCompetency",
+						"type": "Int32"
+					},
+					{
+						"name": "Notes",
+						"type": "String"
+					},
+					{
+						"name": "Actual",
+						"type": "Single"
+					},
+					{
+						"name": "Billable",
+						"type": "Single"
+					},
+					{
+						"name": "UnitPrice",
+						"type": "Decimal"
+					},
+					{
+						"name": "NonWKKFUnitPrice",
+						"type": "Decimal"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[TimeEntered]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbsql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTablesinkadfwatermark')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseadfwatermarkload",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"SinkTableName": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"typeProperties": {
+					"tableName": {
+						"value": "@{dataset().SinkTableName}",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseadfwatermarkload')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "09062019adls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019adls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_64a')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "09062019fbsql",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10,
+						"scale": 0
+					},
+					{
+						"name": "FirstName",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "LastName",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "emp"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbsql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_8gp')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "09062019fbblob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "date.txt",
+						"container": "09062019fbstrgcntr"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbblob')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_64a')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "09062019fbblob",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "inputemp.txt",
+						"container": "09062019fbstrgcntr"
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/09062019fbblob')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/watermarkdatasetadfwatermark')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseadfwatermarkload",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "watermarktable"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseadfwatermarkload')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerlinkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SqlServerlinkedservice_connectionString')]",
+					"userName": "[parameters('SqlServerlinkedservice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('SqlServerlinkedservice_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "[parameters('integrationRuntime_selfhostedintegrationruntime')]",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/', parameters('integrationRuntime_selfhostedintegrationruntime'))]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/onpremisesql')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('onpremisesql_connectionString')]",
+					"userName": "[parameters('onpremisesql_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('onpremisesql_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "[parameters('integrationRuntime_selfhostedintegrationruntime')]",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/', parameters('integrationRuntime_selfhostedintegrationruntime'))]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sqlserverlinkdsvcadfwatermark')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('sqlserverlinkdsvcadfwatermark_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "[parameters('integrationRuntime_selfhostedintegrationruntime')]",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/', parameters('integrationRuntime_selfhostedintegrationruntime'))]"
+			]
+		}
+	]
+}

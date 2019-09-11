@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "09062019fbadf"
+		},
+		"integrationRuntime_092019adflab-ssis": {
+			"value": "092019adflab-ssis"
+		},
+		"integrationRuntime_selfhostedintegrationruntime": {
+			"value": "selfhostedintegrationruntime"
+		},
+		"09062019adls_accountKey": {
+			"value": ""
+		},
+		"09062019fbblob_connectionString": {
+			"value": ""
+		},
+		"09062019fbsql_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabaseadfwatermarkload_connectionString": {
+			"value": ""
+		},
+		"SqlServerlinkedservice_connectionString": {
+			"value": ""
+		},
+		"SqlServerlinkedservice_password": {
+			"value": ""
+		},
+		"onpremisesql_connectionString": {
+			"value": ""
+		},
+		"onpremisesql_password": {
+			"value": ""
+		},
+		"sqlserverlinkdsvcadfwatermark_connectionString": {
+			"value": ""
+		},
+		"09062019adls_properties_typeProperties_url": {
+			"value": "https://09062019adls.dfs.core.windows.net"
+		},
+		"SqlServerlinkedservice_properties_typeProperties_userName": {
+			"value": "northamerica\\rraghun"
+		},
+		"onpremisesql_properties_typeProperties_userName": {
+			"value": "northamerica\\rraghun"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "09adflabsqlsy3lm.database.windows.net"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "rraghun"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

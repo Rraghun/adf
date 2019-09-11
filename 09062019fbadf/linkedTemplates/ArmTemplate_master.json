@@ -1,0 +1,182 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "09062019fbadf"
+		},
+		"integrationRuntime_092019adflab-ssis": {
+			"type": "string",
+			"metadata": "Integration Runtime Name",
+			"defaultValue": "092019adflab-ssis"
+		},
+		"integrationRuntime_selfhostedintegrationruntime": {
+			"type": "string",
+			"metadata": "Integration Runtime Name",
+			"defaultValue": "selfhostedintegrationruntime"
+		},
+		"09062019adls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of '09062019adls'"
+		},
+		"09062019fbblob_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of '09062019fbblob'"
+		},
+		"09062019fbsql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of '09062019fbsql'"
+		},
+		"AzureSqlDatabaseadfwatermarkload_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseadfwatermarkload'"
+		},
+		"SqlServerlinkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerlinkedservice'"
+		},
+		"SqlServerlinkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerlinkedservice'"
+		},
+		"onpremisesql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'onpremisesql'"
+		},
+		"onpremisesql_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'onpremisesql'"
+		},
+		"sqlserverlinkdsvcadfwatermark_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlserverlinkdsvcadfwatermark'"
+		},
+		"09062019adls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://09062019adls.dfs.core.windows.net"
+		},
+		"SqlServerlinkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "northamerica\\rraghun"
+		},
+		"onpremisesql_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "northamerica\\rraghun"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "09adflabsqlsy3lm.database.windows.net"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "rraghun"
+		},
+		"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas Token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"integrationRuntime_092019adflab-ssis": {
+						"value": "[parameters('integrationRuntime_092019adflab-ssis')]"
+					},
+					"integrationRuntime_selfhostedintegrationruntime": {
+						"value": "[parameters('integrationRuntime_selfhostedintegrationruntime')]"
+					},
+					"09062019adls_accountKey": {
+						"value": "[parameters('09062019adls_accountKey')]"
+					},
+					"09062019fbblob_connectionString": {
+						"value": "[parameters('09062019fbblob_connectionString')]"
+					},
+					"09062019fbsql_connectionString": {
+						"value": "[parameters('09062019fbsql_connectionString')]"
+					},
+					"AzureSqlDatabaseadfwatermarkload_connectionString": {
+						"value": "[parameters('AzureSqlDatabaseadfwatermarkload_connectionString')]"
+					},
+					"SqlServerlinkedservice_connectionString": {
+						"value": "[parameters('SqlServerlinkedservice_connectionString')]"
+					},
+					"SqlServerlinkedservice_password": {
+						"value": "[parameters('SqlServerlinkedservice_password')]"
+					},
+					"onpremisesql_connectionString": {
+						"value": "[parameters('onpremisesql_connectionString')]"
+					},
+					"onpremisesql_password": {
+						"value": "[parameters('onpremisesql_password')]"
+					},
+					"sqlserverlinkdsvcadfwatermark_connectionString": {
+						"value": "[parameters('sqlserverlinkdsvcadfwatermark_connectionString')]"
+					},
+					"09062019adls_properties_typeProperties_url": {
+						"value": "[parameters('09062019adls_properties_typeProperties_url')]"
+					},
+					"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+						"value": "[parameters('092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
+					},
+					"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+						"value": "[parameters('092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
+					},
+					"092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+						"value": "[parameters('092019adflab-ssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+					},
+					"SqlServerlinkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServerlinkedservice_properties_typeProperties_userName')]"
+					},
+					"onpremisesql_properties_typeProperties_userName": {
+						"value": "[parameters('onpremisesql_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_0')]"
+			]
+		}
+	]
+}
