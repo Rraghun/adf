@@ -1,0 +1,81 @@
+{
+	"name": "09062019SQLDBdate",
+	"properties": {
+		"description": "Connect to your data destination store.",
+		"linkedServiceName": {
+			"referenceName": "09062019fbsql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "DateID",
+				"type": "Int32"
+			},
+			{
+				"name": "Date",
+				"type": "DateTime"
+			},
+			{
+				"name": "DayNumber",
+				"type": "Int32"
+			},
+			{
+				"name": "DayOfWeekNumber",
+				"type": "Int32"
+			},
+			{
+				"name": "DayOfWeekName",
+				"type": "String"
+			},
+			{
+				"name": "WeekName",
+				"type": "String"
+			},
+			{
+				"name": "Week",
+				"type": "DateTime"
+			},
+			{
+				"name": "DayOfYear",
+				"type": "Int32"
+			},
+			{
+				"name": "MonthNumber",
+				"type": "Int32"
+			},
+			{
+				"name": "MonthName",
+				"type": "String"
+			},
+			{
+				"name": "Year",
+				"type": "Int32"
+			},
+			{
+				"name": "CalendarQuarter",
+				"type": "String"
+			},
+			{
+				"name": "FiscalYear",
+				"type": "String"
+			},
+			{
+				"name": "FiscalMonth",
+				"type": "Int32"
+			},
+			{
+				"name": "FiscalQuarter",
+				"type": "String"
+			},
+			{
+				"name": "FiscalBiMonth",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Date]"
+		}
+	}
+}

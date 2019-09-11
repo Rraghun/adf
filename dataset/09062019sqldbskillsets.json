@@ -1,0 +1,29 @@
+{
+	"name": "09062019sqldbskillsets",
+	"properties": {
+		"description": "Connect to your data destination store.",
+		"linkedServiceName": {
+			"referenceName": "09062019fbsql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"structure": [
+			{
+				"name": "SkillSetsID",
+				"type": "Int32"
+			},
+			{
+				"name": "SkillSet",
+				"type": "String"
+			},
+			{
+				"name": "SkillSetDescription",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[SkillSets]"
+		}
+	}
+}

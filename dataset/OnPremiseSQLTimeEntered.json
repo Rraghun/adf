@@ -1,0 +1,61 @@
+{
+	"name": "OnPremiseSQLTimeEntered",
+	"properties": {
+		"description": "Connect to your data source store.",
+		"linkedServiceName": {
+			"referenceName": "onpremisesql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "TimeEnteredID",
+				"type": "Int32"
+			},
+			{
+				"name": "DateID",
+				"type": "Int32"
+			},
+			{
+				"name": "ProjectTreeID",
+				"type": "Int32"
+			},
+			{
+				"name": "PeopleID",
+				"type": "Int32"
+			},
+			{
+				"name": "SkillSetsID",
+				"type": "Int32"
+			},
+			{
+				"name": "SkillSetCompetency",
+				"type": "Int32"
+			},
+			{
+				"name": "Notes",
+				"type": "String"
+			},
+			{
+				"name": "Actual",
+				"type": "Single"
+			},
+			{
+				"name": "Billable",
+				"type": "Single"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "Decimal"
+			},
+			{
+				"name": "NonWKKFUnitPrice",
+				"type": "Decimal"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[TimeEntered]"
+		}
+	}
+}

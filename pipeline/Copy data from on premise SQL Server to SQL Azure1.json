@@ -1,0 +1,275 @@
+{
+	"name": "Copy data from on premise SQL Server to SQL Azure1",
+	"properties": {
+		"description": "Copy data from on premise SQL Server to SQL Azure.\n\nYou can also go to \"Copy Data Tool\" to get the pipeline for more connectors and scenarios.",
+		"activities": [
+			{
+				"name": "SQL_to_SQLAzure Datetable",
+				"description": "Copy data from SQL server to SQL Azure",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlSource"
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000,
+						"preCopyScript": "delete from date",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"dataIntegrationUnits": 0,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"DateID": "DateID",
+							"Date": "Date",
+							"DayNumber": "DayNumber",
+							"DayOfWeekNumber": "DayOfWeekNumber",
+							"DayOfWeekName": "DayOfWeekName",
+							"WeekName": "WeekName",
+							"Week": "Week",
+							"DayOfYear": "DayOfYear",
+							"MonthNumber": "MonthNumber",
+							"MonthName": "MonthName",
+							"Year": "Year",
+							"CalendarQuarter": "CalendarQuarter",
+							"FiscalYear": "FiscalYear",
+							"FiscalMonth": "FiscalMonth",
+							"FiscalQuarter": "FiscalQuarter",
+							"FiscalBiMonth": "FiscalBiMonth"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "OnpremiseSQLdate",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "09062019SQLDBdate",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "sqltosqlazure people",
+				"description": "Copy data from SQL server to SQL Azure",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource"
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000,
+						"preCopyScript": "delete from people",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"dataIntegrationUnits": 0,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"PeopleID": "PeopleID",
+							"PersonID": "PersonID",
+							"LastCommaFirstName": "LastCommaFirstName",
+							"FirstName": "FirstName",
+							"LastName": "LastName",
+							"PersonStatus": "PersonStatus",
+							"PrimaryTeam": "PrimaryTeam",
+							"Email": "Email",
+							"City": "City",
+							"State": "State",
+							"PersonImage": "PersonImage"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "09062019SQLDBPeople",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "09062019SQLDBPeople",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "sqltosqlazureprojecttree",
+				"description": "Copy data from SQL server to SQL Azure",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource"
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000,
+						"preCopyScript": "delete from  projecttree",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"dataIntegrationUnits": 0,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"ProjectTreeID": "ProjectTreeID",
+							"Type": "Type",
+							"Project": "Project",
+							"Phase": "Phase",
+							"Task": "Task"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "09062019sqldbprojecttree",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "09062019sqldbprojecttree",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "sqltosqlazuretimeentered",
+				"description": "Copy data from SQL server to SQL Azure",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource"
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000,
+						"preCopyScript": "delete from timeentered",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"dataIntegrationUnits": 0,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"TimeEnteredID": "TimeEnteredID",
+							"DateID": "DateID",
+							"ProjectTreeID": "ProjectTreeID",
+							"PeopleID": "PeopleID",
+							"SkillSetsID": "SkillSetsID",
+							"SkillSetCompetency": "SkillSetCompetency",
+							"Notes": "Notes",
+							"Actual": "Actual",
+							"Billable": "Billable",
+							"UnitPrice": "UnitPrice",
+							"NonWKKFUnitPrice": "NonWKKFUnitPrice"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "09062019sqldbtimeentered",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "09062019sqldbtimeentered",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "sqltosqlazureskillsets",
+				"description": "Copy data from SQL server to SQL Azure",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource"
+					},
+					"sink": {
+						"type": "SqlSink",
+						"writeBatchSize": 10000,
+						"preCopyScript": "delete from skillsets",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"dataIntegrationUnits": 0,
+					"translator": {
+						"type": "TabularTranslator",
+						"columnMappings": {
+							"SkillSetsID": "SkillSetsID",
+							"SkillSet": "SkillSet",
+							"SkillSetDescription": "SkillSetDescription"
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "09062019sqldbskillsets",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "09062019sqldbskillsets",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
