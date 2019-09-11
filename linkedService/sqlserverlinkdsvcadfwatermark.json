@@ -1,0 +1,16 @@
+{
+	"name": "sqlserverlinkdsvcadfwatermark",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=rraghun-sb2;initial catalog=adf_watermarkLoad;user id=rraghun1",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2ZTkwYTJkOC0xYTQwLTQ2OGEtYjJjOC1hMjQzYjQxNWQyMTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "selfhostedintegrationruntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
