@@ -1,0 +1,22 @@
+{
+	"name": "AzureSqlTablesinkadfwatermark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseadfwatermarkload",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"SinkTableName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"tableName": {
+				"value": "@{dataset().SinkTableName}",
+				"type": "Expression"
+			}
+		}
+	}
+}

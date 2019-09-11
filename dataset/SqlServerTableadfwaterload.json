@@ -1,0 +1,15 @@
+{
+	"name": "SqlServerTableadfwaterload",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlserverlinkdsvcadfwatermark",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "dummyName"
+		}
+	}
+}
