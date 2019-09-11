@@ -33,6 +33,10 @@
 										"value": "select * from watermarktable where TableName  =  '@{item().TABLE_NAME}'",
 										"type": "Expression"
 									}
+								},
+								"dataset": {
+									"referenceName": "watermarkdatasetadfwatermark",
+									"type": "DatasetReference"
 								}
 							}
 						},
@@ -55,6 +59,10 @@
 										"value": "select MAX(@{item().WaterMark_Column}) as NewWatermarkvalue from @{item().TABLE_NAME}",
 										"type": "Expression"
 									}
+								},
+								"dataset": {
+									"referenceName": "SqlServerTableadfwaterload",
+									"type": "DatasetReference"
 								}
 							}
 						},
@@ -97,7 +105,22 @@
 									"SqlWriterStoredProcedureName": "@{item().StoredProcedureNameForMergeOperation}"
 								},
 								"enableStaging": false
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "SqlServerTableadfwaterload",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AzureSqlTablesinkadfwatermark",
+									"type": "DatasetReference",
+									"parameters": {
+										"SinkTableName": "@{item().TableType}"
+									}
+								}
+							]
 						},
 						{
 							"name": "StoredProceduretoWriteWatermarkActivity",
@@ -136,6 +159,10 @@
 										"type": "String"
 									}
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureSqlDatabaseadfwatermarkload",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
